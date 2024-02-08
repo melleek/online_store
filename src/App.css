@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: ALS Hauss Regular, sans-serif;
+}
+
+.bg1 {
+  background-image: url('src/assets/img/wm-p12-pc.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.bg2 {
+  background-image: url('src/assets/img/depositphotos_33_l.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: #ffffff33;
+  color: #0000002b;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 30px; 
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #fff;
+  color: #48a067;
+}
