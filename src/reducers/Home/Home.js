@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCart, getCategory, getCotegoryById, getProductById, getProducts } from "../../api/Home/home";
+import { getAmount, getCart, getCategory, getCotegoryById, getProductById, getProducts } from "../../api/Home/home";
 
 const Home = createSlice({
     name: "Home",
@@ -12,6 +12,7 @@ const Home = createSlice({
         subCategory: [],
         cart: [],
         productId: [],
+        amount: [],
     },
     reducers: {
 
@@ -21,7 +22,7 @@ const Home = createSlice({
         },
         setCorzinaclose: (state, action) => {
             state.corzina = false
-        }
+        },
     },
 
     extraReducers: (builder) => {
@@ -65,6 +66,13 @@ const Home = createSlice({
             // console.log(action.payload);
             state.loading = false;
             state.cart = action.payload
+        })
+
+        //getAmount 
+        builder.addCase(getAmount.fulfilled, (state, action) => {
+            console.log(action.payload);
+            state.loading = false;
+            state.amount = action.payload
         })
 
 

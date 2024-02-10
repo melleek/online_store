@@ -62,13 +62,25 @@ export const getCart = createAsyncThunk('home/getCart',
     }
 )
 
+//getAmount 
+export const getAmount = createAsyncThunk('home/getAmount',
+    async () => {
+        try {
+            const { data } = await axiosRequest.get('Cart/get-products-from-cart')
+            return data?.data[0]
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
 //addCart 
 export const addCart = createAsyncThunk('home/addCart',
     async (id, { dispatch }) => {
         try {
-            const { data } = await axiosRequest.post(`Cart/add-product-to-cart?id=${id}`)
+            const { } = await axiosRequest.post(`Cart/add-product-to-cart?id=${id}`)
             // console.log(data);
             dispatch(getCart())
+            dispatch(getAmount())
         } catch (error) {
             console.log(error);
         }
@@ -79,8 +91,9 @@ export const addCart = createAsyncThunk('home/addCart',
 export const putPlus = createAsyncThunk('home/putPlus',
     async (id, { dispatch }) => {
         try {
-            const { data } = await axiosRequest.put(`Cart/increase-product-in-cart?id=${id}`)
+            const { } = await axiosRequest.put(`Cart/increase-product-in-cart?id=${id}`)
             dispatch(getCart())
+            dispatch(getAmount())
         } catch (error) {
             console.log(error);
         }
@@ -91,8 +104,9 @@ export const putPlus = createAsyncThunk('home/putPlus',
 export const putMinus = createAsyncThunk('home/putMinus',
     async (id, { dispatch }) => {
         try {
-            const { data } = await axiosRequest.put(`Cart/reduce-product-in-cart?id=${id}`)
+            const { } = await axiosRequest.put(`Cart/reduce-product-in-cart?id=${id}`)
             dispatch(getCart())
+            dispatch(getAmount())
         } catch (error) {
             console.log(error);
         }
@@ -103,8 +117,9 @@ export const putMinus = createAsyncThunk('home/putMinus',
 export const deleteCart = createAsyncThunk("home/deleteCart",
     async (id, { dispatch }) => {
         try {
-            const { data } = await axiosRequest.delete(`Cart/delete-product-from-cart?id=${id}`);
+            const { } = await axiosRequest.delete(`Cart/delete-product-from-cart?id=${id}`);
             dispatch(getCart())
+            dispatch(getAmount())
         } catch (error) {
             console.log(error);
         }
@@ -117,6 +132,7 @@ export const clearCart = createAsyncThunk('home/clearCart',
         try {
             const { data } = await axiosRequest.delete('/Cart/clear-cart')
             dispatch(getCart())
+            dispatch(getAmount())
         } catch (error) {
             console.log(error);
         }

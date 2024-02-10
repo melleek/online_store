@@ -127,7 +127,9 @@ function Home() {
                 return (
                   <>
                     <div key={el.id} className="w-[300px] flex flex-col items-start gap-[10px]">
-                      <img src={`${import.meta.env.VITE_APP_FILES_URL}${el.image}`} />
+                      <Link to={'/userId'} onClick={() => dispatch(getProductById(el.id))}>
+                        <img src={`${import.meta.env.VITE_APP_FILES_URL}${el.image}`} />
+                      </Link>
                       <div className='flex items-start gap-[5px] pt-[20px]'>
                         <h1 className='font-[700] tracking-[0.5px]'>{el.price} c.</h1>
                         <p className='text-[14px] text-[#80808083] tracking-[1px]' style={{ textDecoration: 'line-through' }}>{el.discountPrice} c.</p>

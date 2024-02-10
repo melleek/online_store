@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 //mui modal tabs
@@ -12,9 +12,11 @@ import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStore
 import ModalCat from '../components/ModalCat/ModalCat';
 import { axiosRequest } from '../utils/axiosRequest';
 import { saveToken } from '../utils/token';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAmount, getCart } from '../api/Home/home';
 
 function Layout() {
+  const dispatch = useDispatch()
 
   //Category
   const [openModal, setOpenModal] = useState(false)
@@ -71,6 +73,12 @@ function Layout() {
   }
 
   const cart = useSelector((store) => store.Home.cart)
+
+
+  useEffect(() => {
+    dispatch(getCart())
+    dispatch(getAmount())
+  }, [dispatch])
 
   return (
     <div className='w-[1519px] m-[auto]'>
@@ -159,22 +167,37 @@ function Layout() {
           {/*  */}
           <ul className='flex flex-col gap-[20px] text-[16px] font-[700]'>
             <li className='text-[14px] text-[#d2d2d2]'>Телефоны справочной службы</li>
-            <li className='hover:text-[#48a067]'><button>900</button></li>
-            <li className='hover:text-[#48a067]'><button>+992 48-888-111</button></li>
-            <li className='hover:text-[#48a067]'><button>@alifshop_tj</button></li>
+            <li className='hover:text-[#48a067]'><button onClick={() => alert('Ooo 🥴,  вы до сих пор тут ?')}>900</button></li>
+            <li className='hover:text-[#48a067]'><button onClick={() => alert('Почему вы хотите позвонить ? 🤨')}>+992 48-888-111</button></li>
+            <Link to={'/'}>
+              <li className='hover:text-[#48a067]'><button>@alifshop_tj</button></li>
+            </Link>
           </ul>
 
           {/*  */}
           <ul className='flex flex-col gap-[20px] text-[16px]'>
-            <li className='hover:text-[#48a067]'><button>Каталог товаров</button></li>
-            <li className='hover:text-[#48a067]'><button>Смартфоны</button></li>
-            <li className='hover:text-[#48a067]'><button>Телевизоры</button></li>
+            <Link to={'/catalogtvr'}>
+              <li className='hover:text-[#48a067]'><button>Каталог товаров</button></li>
+            </Link>
+
+            <Link to={'/catalogtvr'}>
+              <li className='hover:text-[#48a067]'><button>Смартфоны</button></li>
+            </Link>
+
+            <Link to={'/catalogtvr'}>
+              <li className='hover:text-[#48a067]'><button>Телевизоры</button></li>
+            </Link>
           </ul>
 
           {/*  */}
           <ul className='flex flex-col gap-[20px] text-[16px]'>
-            <li className='hover:text-[#48a067]'><button>Стиральные машины</button></li>
-            <li className='hover:text-[#48a067]'><button>Кондиционеры</button></li>
+
+            <Link to={'/catalogtvr'}>
+              <li className='hover:text-[#48a067]'><button>Стиральные машины</button></li>
+            </Link>
+            <Link to={'/catalogtvr'}>
+              <li className='hover:text-[#48a067]'><button>Кондиционеры</button></li>
+            </Link>
           </ul>
 
 
@@ -348,6 +371,7 @@ function Layout() {
           </form>
         </div>
       </Dialog>
+
     </div>
   )
 }
